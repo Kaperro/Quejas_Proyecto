@@ -1,0 +1,42 @@
+﻿@model Quejas_Proyecto.context.sucursal
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>sucursal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_sucursal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_sucursal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comercio.nombre_comercio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comercio.nombre_comercio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.municipio.nombre_municipio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.municipio.nombre_municipio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idsucursal }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

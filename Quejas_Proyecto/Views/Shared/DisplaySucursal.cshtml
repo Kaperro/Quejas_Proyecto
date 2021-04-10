@@ -1,0 +1,13 @@
+﻿@model Quejas_Proyecto.context.sucursal
+
+<option value="">Seleccione Sucursal</option>
+
+@if (ViewBag.sucursalList != null)
+{
+    foreach (var item in ViewBag.sucursalList)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}
+
+

@@ -1,0 +1,11 @@
+﻿@model Quejas_Proyecto.context.comercio
+
+<option value="">Seleccione Comercio</option>
+
+@if (ViewBag.SucursalComercio != null)
+{
+    foreach (var item in ViewBag.SucursalComercio)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

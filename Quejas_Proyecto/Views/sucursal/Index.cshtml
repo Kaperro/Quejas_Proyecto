@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Quejas_Proyecto.context.sucursal>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre_sucursal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comercio.nombre_comercio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.municipio.nombre_municipio)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre_sucursal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comercio.nombre_comercio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.municipio.nombre_municipio)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idsucursal }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idsucursal }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idsucursal })
+        </td>
+    </tr>
+}
+
+</table>

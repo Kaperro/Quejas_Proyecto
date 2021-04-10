@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="quejasModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="comercio">
+          <Key>
+            <PropertyRef Name="idcomercio" />
+          </Key>
+          <Property Name="idcomercio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_comercio" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="departamento">
+          <Key>
+            <PropertyRef Name="iddepartamento" />
+          </Key>
+          <Property Name="iddepartamento" Type="int" Nullable="false" />
+          <Property Name="idregion" Type="int" Nullable="false" />
+          <Property Name="nombre_departamento" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="municipio">
+          <Key>
+            <PropertyRef Name="idmunicipio" />
+          </Key>
+          <Property Name="idmunicipio" Type="int" Nullable="false" />
+          <Property Name="iddepartamento" Type="int" Nullable="false" />
+          <Property Name="nombre_municipio" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="queja">
+          <Key>
+            <PropertyRef Name="idqueja" />
+          </Key>
+          <Property Name="idqueja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idsucursal" Type="int" Nullable="false" />
+          <Property Name="queja" Type="varchar" MaxLength="500" />
+          <Property Name="fecha_queja" Type="date" />
+        </EntityType>
+        <EntityType Name="region">
+          <Key>
+            <PropertyRef Name="idregion" />
+          </Key>
+          <Property Name="idregion" Type="int" Nullable="false" />
+          <Property Name="nombre_region" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="sucursal">
+          <Key>
+            <PropertyRef Name="idsucursal" />
+          </Key>
+          <Property Name="idsucursal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcomercio" Type="int" Nullable="false" />
+          <Property Name="idmunicipio" Type="int" Nullable="false" />
+          <Property Name="nombre_sucursal" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <Association Name="fk_idcomercio">
+          <End Role="comercio" Type="Self.comercio" Multiplicity="1" />
+          <End Role="sucursal" Type="Self.sucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comercio">
+              <PropertyRef Name="idcomercio" />
+            </Principal>
+            <Dependent Role="sucursal">
+              <PropertyRef Name="idcomercio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_iddepartamentomunicipio">
+          <End Role="departamento" Type="Self.departamento" Multiplicity="1" />
+          <End Role="municipio" Type="Self.municipio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departamento">
+              <PropertyRef Name="iddepartamento" />
+            </Principal>
+            <Dependent Role="municipio">
+              <PropertyRef Name="iddepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idmunicipio">
+          <End Role="municipio" Type="Self.municipio" Multiplicity="1" />
+          <End Role="sucursal" Type="Self.sucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="municipio">
+              <PropertyRef Name="idmunicipio" />
+            </Principal>
+            <Dependent Role="sucursal">
+              <PropertyRef Name="idmunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idregiondepartamento">
+          <End Role="region" Type="Self.region" Multiplicity="1" />
+          <End Role="departamento" Type="Self.departamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="region">
+              <PropertyRef Name="idregion" />
+            </Principal>
+            <Dependent Role="departamento">
+              <PropertyRef Name="idregion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idsucursal">
+          <End Role="sucursal" Type="Self.sucursal" Multiplicity="1" />
+          <End Role="queja" Type="Self.queja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sucursal">
+              <PropertyRef Name="idsucursal" />
+            </Principal>
+            <Dependent Role="queja">
+              <PropertyRef Name="idsucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="quejasModelStoreContainer">
+          <EntitySet Name="comercio" EntityType="Self.comercio" Schema="quejas" store:Type="Tables" />
+          <EntitySet Name="departamento" EntityType="Self.departamento" Schema="quejas" store:Type="Tables" />
+          <EntitySet Name="municipio" EntityType="Self.municipio" Schema="quejas" store:Type="Tables" />
+          <EntitySet Name="queja" EntityType="Self.queja" Schema="quejas" store:Type="Tables" />
+          <EntitySet Name="region" EntityType="Self.region" Schema="quejas" store:Type="Tables" />
+          <EntitySet Name="sucursal" EntityType="Self.sucursal" Schema="quejas" store:Type="Tables" />
+          <AssociationSet Name="fk_idcomercio" Association="Self.fk_idcomercio">
+            <End Role="comercio" EntitySet="comercio" />
+            <End Role="sucursal" EntitySet="sucursal" />
+          </AssociationSet>
+          <AssociationSet Name="fk_iddepartamentomunicipio" Association="Self.fk_iddepartamentomunicipio">
+            <End Role="departamento" EntitySet="departamento" />
+            <End Role="municipio" EntitySet="municipio" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idmunicipio" Association="Self.fk_idmunicipio">
+            <End Role="municipio" EntitySet="municipio" />
+            <End Role="sucursal" EntitySet="sucursal" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idregiondepartamento" Association="Self.fk_idregiondepartamento">
+            <End Role="region" EntitySet="region" />
+            <End Role="departamento" EntitySet="departamento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idsucursal" Association="Self.fk_idsucursal">
+            <End Role="sucursal" EntitySet="sucursal" />
+            <End Role="queja" EntitySet="queja" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="quejasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="comercio">
+          <Key>
+            <PropertyRef Name="idcomercio" />
+          </Key>
+          <Property Name="idcomercio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_comercio" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="sucursals" Relationship="Self.fk_idcomercio" FromRole="comercio" ToRole="sucursal" />
+        </EntityType>
+        <EntityType Name="departamento">
+          <Key>
+            <PropertyRef Name="iddepartamento" />
+          </Key>
+          <Property Name="iddepartamento" Type="Int32" Nullable="false" />
+          <Property Name="idregion" Type="Int32" Nullable="false" />
+          <Property Name="nombre_departamento" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="municipios" Relationship="Self.fk_iddepartamentomunicipio" FromRole="departamento" ToRole="municipio" />
+          <NavigationProperty Name="region" Relationship="Self.fk_idregiondepartamento" FromRole="departamento" ToRole="region" />
+        </EntityType>
+        <EntityType Name="municipio">
+          <Key>
+            <PropertyRef Name="idmunicipio" />
+          </Key>
+          <Property Name="idmunicipio" Type="Int32" Nullable="false" />
+          <Property Name="iddepartamento" Type="Int32" Nullable="false" />
+          <Property Name="nombre_municipio" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="departamento" Relationship="Self.fk_iddepartamentomunicipio" FromRole="municipio" ToRole="departamento" />
+          <NavigationProperty Name="sucursals" Relationship="Self.fk_idmunicipio" FromRole="municipio" ToRole="sucursal" />
+        </EntityType>
+        <EntityType Name="queja">
+          <Key>
+            <PropertyRef Name="idqueja" />
+          </Key>
+          <Property Name="idqueja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idsucursal" Type="Int32" Nullable="false" />
+          <Property Name="queja1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_queja" Type="DateTime" />
+          <NavigationProperty Name="sucursal" Relationship="Self.fk_idsucursal" FromRole="queja" ToRole="sucursal" />
+        </EntityType>
+        <EntityType Name="region">
+          <Key>
+            <PropertyRef Name="idregion" />
+          </Key>
+          <Property Name="idregion" Type="Int32" Nullable="false" />
+          <Property Name="nombre_region" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="departamentoes" Relationship="Self.fk_idregiondepartamento" FromRole="region" ToRole="departamento" />
+        </EntityType>
+        <EntityType Name="sucursal">
+          <Key>
+            <PropertyRef Name="idsucursal" />
+          </Key>
+          <Property Name="idsucursal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcomercio" Type="Int32" Nullable="false" />
+          <Property Name="idmunicipio" Type="Int32" Nullable="false" />
+          <Property Name="nombre_sucursal" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="comercio" Relationship="Self.fk_idcomercio" FromRole="sucursal" ToRole="comercio" />
+          <NavigationProperty Name="municipio" Relationship="Self.fk_idmunicipio" FromRole="sucursal" ToRole="municipio" />
+          <NavigationProperty Name="quejas" Relationship="Self.fk_idsucursal" FromRole="sucursal" ToRole="queja" />
+        </EntityType>
+        <Association Name="fk_idcomercio">
+          <End Role="comercio" Type="Self.comercio" Multiplicity="1" />
+          <End Role="sucursal" Type="Self.sucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comercio">
+              <PropertyRef Name="idcomercio" />
+            </Principal>
+            <Dependent Role="sucursal">
+              <PropertyRef Name="idcomercio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_iddepartamentomunicipio">
+          <End Role="departamento" Type="Self.departamento" Multiplicity="1" />
+          <End Role="municipio" Type="Self.municipio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="departamento">
+              <PropertyRef Name="iddepartamento" />
+            </Principal>
+            <Dependent Role="municipio">
+              <PropertyRef Name="iddepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idregiondepartamento">
+          <End Role="region" Type="Self.region" Multiplicity="1" />
+          <End Role="departamento" Type="Self.departamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="region">
+              <PropertyRef Name="idregion" />
+            </Principal>
+            <Dependent Role="departamento">
+              <PropertyRef Name="idregion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idmunicipio">
+          <End Role="municipio" Type="Self.municipio" Multiplicity="1" />
+          <End Role="sucursal" Type="Self.sucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="municipio">
+              <PropertyRef Name="idmunicipio" />
+            </Principal>
+            <Dependent Role="sucursal">
+              <PropertyRef Name="idmunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idsucursal">
+          <End Role="sucursal" Type="Self.sucursal" Multiplicity="1" />
+          <End Role="queja" Type="Self.queja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sucursal">
+              <PropertyRef Name="idsucursal" />
+            </Principal>
+            <Dependent Role="queja">
+              <PropertyRef Name="idsucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="quejasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="comercios" EntityType="Self.comercio" />
+          <EntitySet Name="departamentoes" EntityType="Self.departamento" />
+          <EntitySet Name="municipios" EntityType="Self.municipio" />
+          <EntitySet Name="quejas" EntityType="Self.queja" />
+          <EntitySet Name="regions" EntityType="Self.region" />
+          <EntitySet Name="sucursals" EntityType="Self.sucursal" />
+          <AssociationSet Name="fk_idcomercio" Association="Self.fk_idcomercio">
+            <End Role="comercio" EntitySet="comercios" />
+            <End Role="sucursal" EntitySet="sucursals" />
+          </AssociationSet>
+          <AssociationSet Name="fk_iddepartamentomunicipio" Association="Self.fk_iddepartamentomunicipio">
+            <End Role="departamento" EntitySet="departamentoes" />
+            <End Role="municipio" EntitySet="municipios" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idregiondepartamento" Association="Self.fk_idregiondepartamento">
+            <End Role="region" EntitySet="regions" />
+            <End Role="departamento" EntitySet="departamentoes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idmunicipio" Association="Self.fk_idmunicipio">
+            <End Role="municipio" EntitySet="municipios" />
+            <End Role="sucursal" EntitySet="sucursals" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idsucursal" Association="Self.fk_idsucursal">
+            <End Role="sucursal" EntitySet="sucursals" />
+            <End Role="queja" EntitySet="quejas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="quejasModelStoreContainer" CdmEntityContainer="quejasEntities">
+          <EntitySetMapping Name="comercios">
+            <EntityTypeMapping TypeName="quejasModel.comercio">
+              <MappingFragment StoreEntitySet="comercio">
+                <ScalarProperty Name="idcomercio" ColumnName="idcomercio" />
+                <ScalarProperty Name="nombre_comercio" ColumnName="nombre_comercio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="departamentoes">
+            <EntityTypeMapping TypeName="quejasModel.departamento">
+              <MappingFragment StoreEntitySet="departamento">
+                <ScalarProperty Name="iddepartamento" ColumnName="iddepartamento" />
+                <ScalarProperty Name="idregion" ColumnName="idregion" />
+                <ScalarProperty Name="nombre_departamento" ColumnName="nombre_departamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="municipios">
+            <EntityTypeMapping TypeName="quejasModel.municipio">
+              <MappingFragment StoreEntitySet="municipio">
+                <ScalarProperty Name="idmunicipio" ColumnName="idmunicipio" />
+                <ScalarProperty Name="iddepartamento" ColumnName="iddepartamento" />
+                <ScalarProperty Name="nombre_municipio" ColumnName="nombre_municipio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quejas">
+            <EntityTypeMapping TypeName="quejasModel.queja">
+              <MappingFragment StoreEntitySet="queja">
+                <ScalarProperty Name="idqueja" ColumnName="idqueja" />
+                <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
+                <ScalarProperty Name="queja1" ColumnName="queja" />
+                <ScalarProperty Name="fecha_queja" ColumnName="fecha_queja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="regions">
+            <EntityTypeMapping TypeName="quejasModel.region">
+              <MappingFragment StoreEntitySet="region">
+                <ScalarProperty Name="idregion" ColumnName="idregion" />
+                <ScalarProperty Name="nombre_region" ColumnName="nombre_region" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sucursals">
+            <EntityTypeMapping TypeName="quejasModel.sucursal">
+              <MappingFragment StoreEntitySet="sucursal">
+                <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
+                <ScalarProperty Name="idcomercio" ColumnName="idcomercio" />
+                <ScalarProperty Name="idmunicipio" ColumnName="idmunicipio" />
+                <ScalarProperty Name="nombre_sucursal" ColumnName="nombre_sucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

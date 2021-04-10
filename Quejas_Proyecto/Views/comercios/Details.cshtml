@@ -1,0 +1,26 @@
+﻿@model Quejas_Proyecto.context.comercio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>comercio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_comercio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_comercio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idcomercio }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
