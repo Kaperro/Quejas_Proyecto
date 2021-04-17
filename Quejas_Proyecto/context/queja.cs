@@ -20,6 +20,7 @@ namespace Quejas_Proyecto.context
         [Display(Name = "Queja")]
         public string queja1 { get; set; }
         [Display(Name = "Fecha")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> fecha_queja { get; set; }
     
         public virtual sucursal sucursal { get; set; }

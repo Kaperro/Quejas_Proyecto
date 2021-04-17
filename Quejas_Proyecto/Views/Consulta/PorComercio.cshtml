@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<Quejas_Proyecto.context.Consulta>
+@{
+    ViewBag.Title = "Estadistica por Comercio";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-dark">
+    <tr>
+        <td>
+            CONTEO DE QUEJAS
+        </td>
+
+        <td>
+            COMERCIO
+        </td>
+        <td>
+            ID
+        </td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Queja
+            </td>
+
+            <td>
+                @item.Comercio
+            </td>
+            <td>
+                @item.Id_comercio
+            </td>
+
+        </tr>
+    }
+
+
+</table>
+

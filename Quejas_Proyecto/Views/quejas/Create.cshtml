@@ -94,7 +94,7 @@
             var Depaid = $(this).val();
           //  debugger
             $.ajax({
-                type: "post",
+                type: "POST",
                 url: "/quejas/GetMunicipioSucursal?Depa=" + Depaid,
                 contentType: "html",
                 success: function (response) {
@@ -112,7 +112,7 @@
             var Munic_id = $(this).val();
             //debugger
             $.ajax({
-                type: "post",
+                type: "POST",
                 url: "/quejas/GetComercio?Munic=" + Munic_id,
                 contentType: "html",
                 success: function (response) {
@@ -126,11 +126,12 @@
 
     $(document).ready(function () {
      
-
+        $("#muni").change(function () {
+            var Munici_id = $(this).val();
             $("#Comercio").change(function () {
                 
                 var Come_Id = $(this).val();
-                var Munici_id = 302;
+                
              //   debugger
                 $.ajax({
                     type: 'POST',
@@ -147,6 +148,7 @@
                     }
                 })
             })
+    })
        
     })
 

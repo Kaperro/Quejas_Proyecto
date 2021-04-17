@@ -24,7 +24,7 @@ namespace Quejas_Proyecto.context
         public int idsucursal { get; set; }
         public int idcomercio { get; set; }
         public int idmunicipio { get; set; }
-        [Display(Name = "Nombre de la Sucursal" )]
+        [Display(Name = "Sucursal" )]
         public string nombre_sucursal { get; set; }
     
         public virtual comercio comercio { get; set; }

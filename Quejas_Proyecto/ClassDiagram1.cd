@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Quejas_Proyecto.context.Consulta">
+    <Position X="12.25" Y="3" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAACAA=</HashCode>
+      <FileName>context\Consulta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Quejas_Proyecto.context.depa_sucursal">
+    <Position X="12" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQBAAA=</HashCode>
+      <FileName>context\depa_sucursal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Quejas_Proyecto.context.comercio">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAgAAQAAAAA=</HashCode>
+      <FileName>context\comercio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Quejas_Proyecto.context.departamento">
+    <Position X="9" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AACEAAAAAAAAQAAAAAAIAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>context\departamento.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="region" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="municipios" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Quejas_Proyecto.context.municipio">
+    <Position X="7.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQBAAAAAAAIAAAAAAAAAAAAAAAABQAAAAA=</HashCode>
+      <FileName>context\municipio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Quejas_Proyecto.context.queja">
+    <Position X="3.75" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAQAAAAI=</HashCode>
+      <FileName>context\queja.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Quejas_Proyecto.context.region">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAABAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>context\region.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Quejas_Proyecto.context.sucursal">
+    <Position X="3.5" Y="1" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAgAAARAAAAAAAAAAAAAAACAIAACAAAAAAAAAA=</HashCode>
+      <FileName>context\sucursal.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="comercio" />
+      <Property Name="municipio" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="quejas" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Quejas_Proyecto.context.queja_dep_sucursal">
+    <Position X="0.5" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAIAAAAAAAAAAIAAAAAAAAQAA=</HashCode>
+      <FileName>context\queja_dep_sucursal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

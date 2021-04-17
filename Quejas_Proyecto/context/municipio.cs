@@ -11,7 +11,8 @@ namespace Quejas_Proyecto.context
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class municipio
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,7 @@ namespace Quejas_Proyecto.context
     
         public int idmunicipio { get; set; }
         public int iddepartamento { get; set; }
+        [Display(Name = "Municipio")]
         public string nombre_municipio { get; set; }
     
         public virtual departamento departamento { get; set; }

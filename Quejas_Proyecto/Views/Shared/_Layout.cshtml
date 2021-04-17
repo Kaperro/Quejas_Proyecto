@@ -16,15 +16,38 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Gestion de Quejas", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Comercio", "Index", "comercios")</li>
+                    <li>@Html.ActionLink("Sucursal", "Index", "sucursal")</li>
+                    <li>@Html.ActionLink("Queja", "Index", "quejas")</li>
+                    <li>@Html.ActionLink("Consulta", "Consulta_btn", "Consulta")</li>
+
                 </ul>
+
+                <ul class="nav nav-tabs">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Estadisticas
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Municipio", "PorMunicipio", "Consulta")</a></li>
+                            <li>@Html.ActionLink("Departamento", "PorDepartamento", "Consulta")</li>
+                            <li>@Html.ActionLink("Region", "PorRegion", "Consulta")</li>
+                            <li>@Html.ActionLink("Comercio", "PorComercio", "Consulta")</li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+
             </div>
+
+
         </div>
     </div>
     <div class="container body-content">
