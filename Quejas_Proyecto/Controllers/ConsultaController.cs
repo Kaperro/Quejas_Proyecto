@@ -198,5 +198,16 @@ namespace Quejas_Proyecto.Controllers
 
             return View(detalles);
         }
+        public ActionResult Getquejas()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Getquejas(DateTime date_ini, DateTime date_fin)
+        {
+            List<queja> quejas = db.quejas.Where(m => m.fecha_queja >= date_ini &&  m.fecha_queja <= date_fin).ToList();
+            ViewBag.ListaQueja = quejas;
+            return PartialView("_ListaQuejaFecha");
+        }
     }
 }

@@ -1,0 +1,71 @@
+﻿@model Quejas_Proyecto.context.Fechas
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+</head>
+<body>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fecha_queja_inicio, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Fecha_queja_inicio, new { htmlAttributes = new { @id = "fecha_inicio", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Fecha_queja_inicio, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Fecha_queja_Fin, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Fecha_queja_Fin, new { htmlAttributes = new { @id = "fecha_Fin", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Fecha_queja_Fin, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div>
+
+
+        <table class="table">
+     
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                 
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#fecha_inicio").change(function () {
+            var Fecha_ini = $(this).val();
+            $("#fecha_Fin").change(function () {
+
+                var Fecha_Fin = $(this).val();
+             //   debugger
+                $.ajax({
+                    type: "POST",
+                    url: "/Consulta/Getquejas?date_ini=" + Fecha_ini + '&date_fin=' + Fecha_Fin,
+                    contentType: "html",
+                    success: function (response) {
+                    //    debugger
+                        $("table tbody").empty();
+                        $("table tbody").append(response);
+                    }
+                })
+            })
+        })
+    })
+
+ 
+
+
+
+</script>

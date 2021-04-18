@@ -1,0 +1,25 @@
+﻿@model Quejas_Proyecto.context.queja
+<table class="table">
+    <thead>
+        <tr>
+            <th >Queja</th>
+            <th >Fecha</th>
+        </tr>
+    </thead>
+
+    @foreach (var queja in ViewBag.ListaQueja)
+    {
+
+        <tbody>
+
+            <tr>
+
+                <td>@queja.queja1</td>
+                <td>@queja.fecha_queja</td>
+            </tr>
+
+        </tbody>
+
+
+    }
+</table>
