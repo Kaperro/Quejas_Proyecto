@@ -12,6 +12,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Fecha_queja_inicio, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
+            <label for="other" id="ini"></label>
             @Html.EditorFor(model => model.Fecha_queja_inicio, new { htmlAttributes = new { @id = "fecha_inicio", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Fecha_queja_inicio, "", new { @class = "text-danger" })
         </div>
@@ -19,6 +20,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Fecha_queja_Fin, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
+            <label for="other" id="Fin"></label>
             @Html.EditorFor(model => model.Fecha_queja_Fin, new { htmlAttributes = new { @id = "fecha_Fin", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Fecha_queja_Fin, "", new { @class = "text-danger" })
         </div>
@@ -46,6 +48,7 @@
     $(document).ready(function () {
         $("#fecha_inicio").change(function () {
             var Fecha_ini = $(this).val();
+          
             $("#fecha_Fin").change(function () {
 
                 var Fecha_Fin = $(this).val();
@@ -58,6 +61,12 @@
                     //    debugger
                         $("table tbody").empty();
                         $("table tbody").append(response);
+                        $("#ini").text("");
+                        $("#ini").append(Fecha_ini);
+                        $("#Fin").text("");
+                        $("#Fin").append(Fecha_Fin);
+                        $("#fecha_inicio").val(""); 
+                        $("#fecha_Fin").val("");
                     }
                 })
             })

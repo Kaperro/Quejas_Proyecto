@@ -205,7 +205,7 @@ namespace Quejas_Proyecto.Controllers
         [HttpPost]
         public ActionResult Getquejas(DateTime date_ini, DateTime date_fin)
         {
-            List<queja> quejas = db.quejas.Where(m => m.fecha_queja >= date_ini &&  m.fecha_queja <= date_fin).ToList();
+            List<queja> quejas = db.quejas.Include(m=>m.sucursal.comercio).Where(m => m.fecha_queja >= date_ini &&  m.fecha_queja <= date_fin).ToList();
             ViewBag.ListaQueja = quejas;
             return PartialView("_ListaQuejaFecha");
         }
