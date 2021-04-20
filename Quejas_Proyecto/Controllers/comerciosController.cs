@@ -10,6 +10,7 @@ using Quejas_Proyecto.context;
 
 namespace Quejas_Proyecto.Controllers
 {
+    [Authorize]
     public class comerciosController : Controller
     {
         private quejasEntities db = new quejasEntities();

@@ -11,6 +11,7 @@ using Quejas_Proyecto.context;
 
 namespace Quejas_Proyecto.Controllers
 {
+    [Authorize]
     public class ConsultaController : Controller
     {
         private quejasEntities db = new quejasEntities();

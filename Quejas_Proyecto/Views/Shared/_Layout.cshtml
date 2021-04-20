@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <!--@Scripts.Render("~/bundles/modernizr")-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <nav>
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -18,8 +25,9 @@
                 </button>
                 @Html.ActionLink("Gestion de Quejas", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+      
+            <div>
+                <ul class="nav-wrapper">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Comercio", "Index", "comercios")</li>
                     <li>@Html.ActionLink("Sucursal", "Index", "sucursal")</li>
@@ -27,10 +35,10 @@
                     <li>@Html.ActionLink("Consulta", "Consulta_btn", "Consulta")</li>
                     <li>@Html.ActionLink("Fechas", "Getquejas", "Consulta")</li>
 
-                    
+
 
                 </ul>
-
+                @Html.Partial("_LoginPartial")
                 <ul class="nav nav-tabs">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -42,17 +50,21 @@
                             <li>@Html.ActionLink("Departamento", "PorDepartamento", "Consulta")</li>
                             <li>@Html.ActionLink("Region", "PorRegion", "Consulta")</li>
                             <li>@Html.ActionLink("Comercio", "PorComercio", "Consulta")</li>
+
                         </ul>
                     </li>
 
                 </ul>
 
 
+
             </div>
 
 
         </div>
-    </div>
+    </nav>
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -66,3 +78,4 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
