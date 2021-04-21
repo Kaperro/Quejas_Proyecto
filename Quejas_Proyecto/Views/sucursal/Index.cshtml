@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="responsive-table  striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.nombre_sucursal)
@@ -23,23 +23,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre_sucursal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.comercio.nombre_comercio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.municipio.nombre_municipio)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idsucursal }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idsucursal }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idsucursal })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_sucursal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.comercio.nombre_comercio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.municipio.nombre_municipio)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.idsucursal }) |
+                @Html.ActionLink("Details", "Details", new { id = item.idsucursal }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.idsucursal })
+            </td>
+        </tr>
+    }
 
 </table>

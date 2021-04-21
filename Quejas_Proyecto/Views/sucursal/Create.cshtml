@@ -7,14 +7,14 @@
 }
 
 <h2>@ViewBag.Title </h2>
-<div style="color:green">
-    @ViewBag.Message
-</div>
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    <div style="color:green">
+        @TempData["Message"]
+    </div>
     <div class="form-horizontal">
         <h4>sucursal</h4>
         <hr />
@@ -22,7 +22,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SucursalView.idcomercio, "Comercios", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.SucursalView.idcomercio, ViewBag.idcomercio as SelectList, "seleccione", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.SucursalView.idcomercio, ViewBag.idcomercio as SelectList, "seleccione", new { @class = "form-control browser-default" })
                 @Html.ValidationMessageFor(model => model.SucursalView.idcomercio, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -32,7 +32,7 @@
             @Html.LabelFor(model => model.departamentoView.iddepartamento, "Departamentos", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
 
-                @Html.DropDownListFor(m => m.departamentoView.iddepartamento, ViewBag.depas as SelectList, "seleccione",  new { id = "Depa", @class = "form-control" })
+                @Html.DropDownListFor(m => m.departamentoView.iddepartamento, ViewBag.depas as SelectList, "seleccione", new { id = "Depa", @class = "form-control browser-default" })
 
             </div>
         </div>
@@ -40,7 +40,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SucursalView.idmunicipio, "Municipios", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SucursalView.idmunicipio, new SelectList(""), "seleccione", new { id = "muni" , @class = "form-control" })
+                @Html.DropDownListFor(model => model.SucursalView.idmunicipio, new SelectList(""), "seleccione", new { id = "muni", @class = "form-control browser-default" })
                 @Html.ValidationMessageFor(model => model.SucursalView.idmunicipio, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -55,7 +55,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <button type="submit" value="Create" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i><</button>
+
             </div>
         </div>
     </div>
@@ -74,13 +75,13 @@
         $("#Depa").change(function () {
 
             var Depaid = $(this).val();
-          //  debugger
+            //   debugger
             $.ajax({
                 type: "post",
                 url: "/sucursal/GetMunicipio?Depa=" + Depaid,
                 contentType: "html",
                 success: function (response) {
-                 //  debugger
+                    //     debugger
                     $("#muni").empty();
                     $("#muni").append(response);
                 }

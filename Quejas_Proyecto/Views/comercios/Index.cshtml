@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="responsive-table  striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.nombre_comercio)
@@ -17,17 +17,18 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre_comercio)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idcomercio }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idcomercio }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idcomercio })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_comercio)
+            </td>
+            <td>
+                <button class="btn waves-effect waves-light green lighten-5"> @Html.ActionLink("Edit", "Edit", new { id = item.idcomercio } ) </button> |
+                @Html.ActionLink("Details", "Details", new { id = item.idcomercio }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.idcomercio })
+            </td>
+        </tr>
+    }
 
 </table>

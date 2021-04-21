@@ -60,7 +60,8 @@ namespace Quejas_Proyecto.Controllers
             ViewBag.idcomercio = new SelectList(db.comercios, "idcomercio", "nombre_comercio");
             ViewBag.idmunicipio = new SelectList(db.municipios, "idmunicipio", "nombre_municipio");
              ViewBag.depas = new SelectList(GetDepartamentoList(), "iddepartamento", "nombre_departamento");
-            ViewBag.Message = "Datos ingresados correctamente";
+          
+
             return View();
         }
 
@@ -75,14 +76,15 @@ namespace Quejas_Proyecto.Controllers
             {
                 db.sucursals.Add(sucursal.SucursalView);
                 db.SaveChanges();
+                TempData["Message"] = "Registrado correctamente";
+
                 return RedirectToAction("Create");
-                
+
             }
+
+
+            return View();
             
-            ViewBag.idcomercio = new SelectList(db.comercios, "idcomercio", "nombre_comercio", sucursal.SucursalView.idcomercio);
-            ViewBag.idmunicipio = new SelectList(db.municipios, "idmunicipio", "nombre_municipio", sucursal.SucursalView.idmunicipio);
-            ViewBag.depas = new SelectList(GetDepartamentoList(), "iddepartamento", "nombre_departamento");
-            return View(sucursal.SucursalView);
         }
 
         // GET: sucursal/Edit/5

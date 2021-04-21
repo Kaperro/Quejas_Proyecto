@@ -15,11 +15,11 @@ namespace Quejas_Proyecto.Controllers
         private quejasEntities db = new quejasEntities();
 
         // GET: quejas
-        public ActionResult Index()
+     /*   public ActionResult Index()
         {
             var quejas = db.quejas.Include(q => q.sucursal);
             return View(quejas.ToList());
-        }
+        }*/
 
         // GET: quejas/Details/5
         public ActionResult Details(int? id)
@@ -92,7 +92,8 @@ namespace Quejas_Proyecto.Controllers
             {
                 db.quejas.Add(queja.QuejaView);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["Message"] = "Registrado correctamente";
+                return RedirectToAction("Create");
             }
 
             ViewBag.idsucursal = new SelectList(db.sucursals, "idsucursal", "nombre_sucursal", queja.QuejaView.idsucursal);
@@ -100,7 +101,7 @@ namespace Quejas_Proyecto.Controllers
             return View(queja.QuejaView);
         }
 
-        // GET: quejas/Edit/5
+    /*    // GET: quejas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -166,6 +167,6 @@ namespace Quejas_Proyecto.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
+        }*/
     }
 }

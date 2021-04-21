@@ -1,81 +1,137 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    <!--@Scripts.Render("~/bundles/modernizr")-->
+   
+    @Scripts.Render("~/bundles/modernizr")
+
+  
+    <!-- Compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
-
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+
+
+
 </head>
 <body>
+    <!-- <nav>
+         <div class="container">
+             <div class="navbar-header">
+                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                 </button>
+                 @Html.ActionLink("Gestion de Quejas", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+             </div>
+
+             <div>
+                 <ul class="nav-wrapper">
+                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                     <li>@Html.ActionLink("Comercio", "Index", "comercios")</li>
+                     <li>@Html.ActionLink("Sucursal", "Index", "sucursal")</li>
+                     <li>@Html.ActionLink("Queja", "Index", "quejas")</li>
+                     <li>@Html.ActionLink("Consulta", "Consulta_btn", "Consulta")</li>
+                     <li>@Html.ActionLink("Fechas", "Getquejas", "Consulta")</li>
+
+
+
+                 </ul>
+                 @Html.Partial("_LoginPartial")
+                 <ul class="nav nav-tabs">
+                     <li class="dropdown">
+                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                             Estadisticas
+                             <span class="caret"></span>
+                         </a>
+                         <ul class="dropdown-menu">
+                             <li>@Html.ActionLink("Municipio", "PorMunicipio", "Consulta")</a></li>
+                             <li>@Html.ActionLink("Departamento", "PorDepartamento", "Consulta")</li>
+                             <li>@Html.ActionLink("Region", "PorRegion", "Consulta")</li>
+                             <li>@Html.ActionLink("Comercio", "PorComercio", "Consulta")</li>
+
+                         </ul>
+                     </li>
+
+                 </ul>
+
+
+
+             </div>
+
+
+         </div>
+     </nav>-->
+
     <nav>
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Gestion de Quejas", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-      
-            <div>
-                <ul class="nav-wrapper">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Comercio", "Index", "comercios")</li>
-                    <li>@Html.ActionLink("Sucursal", "Index", "sucursal")</li>
-                    <li>@Html.ActionLink("Queja", "Index", "quejas")</li>
-                    <li>@Html.ActionLink("Consulta", "Consulta_btn", "Consulta")</li>
-                    <li>@Html.ActionLink("Fechas", "Getquejas", "Consulta")</li>
+        <div class="nav-wrapper red accent-4">
+            <div class="container">
+                <a href="~/Home/Index" class="brand-logo"><i class="material-icons left">sentiment_very_dissatisfied</i> Quejas</a>
+                <ul class="right hide-on-med-and-down">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Comercio", "Index", "comercios")</li>
+                        <li>@Html.ActionLink("Sucursal", "Index", "sucursal")</li>
+                        <li>@Html.ActionLink("Consulta", "Consulta_btn", "Consulta")</li>
+                        <li>@Html.ActionLink("Fechas", "Getquejas", "Consulta")</li>
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Estadisticas<i class="material-icons right">arrow_drop_down</i></a></li>
+                        
+                    }
+
+                    <li>@Html.ActionLink("Queja", "Create", "quejas")</li>
 
 
+                    <!-- Dropdown Trigger -->
 
-                </ul>
-                @Html.Partial("_LoginPartial")
-                <ul class="nav nav-tabs">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            Estadisticas
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Municipio", "PorMunicipio", "Consulta")</a></li>
-                            <li>@Html.ActionLink("Departamento", "PorDepartamento", "Consulta")</li>
-                            <li>@Html.ActionLink("Region", "PorRegion", "Consulta")</li>
-                            <li>@Html.ActionLink("Comercio", "PorComercio", "Consulta")</li>
-
-                        </ul>
-                    </li>
+                    <li>  @Html.Partial("_LoginPartial")</li>
 
                 </ul>
 
 
 
-            </div>
 
+            </div>
 
         </div>
+        <!-- Dropdown Structure -->
+        <ul id="dropdown1" class="dropdown-content">
+            <li>@Html.ActionLink("Municipio", "PorMunicipio", "Consulta")</a></li>
+            <li>@Html.ActionLink("Departamento", "PorDepartamento", "Consulta")</li>
+            <li>@Html.ActionLink("Region", "PorRegion", "Consulta")</li>
+            <li>@Html.ActionLink("Comercio", "PorComercio", "Consulta")</li>
+        </ul>
+
     </nav>
+
 
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
+
+        <br />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Quejas Application</p>
         </footer>
     </div>
+    <script>   document.addEventListener('DOMContentLoaded', function () {
+       M.AutoInit();
+        });
+</script>
+ 
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+
+
 </body>
 </html>
 

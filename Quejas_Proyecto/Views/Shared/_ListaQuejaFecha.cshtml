@@ -1,17 +1,17 @@
 ﻿@model Quejas_Proyecto.context.queja
-<table class="table">
-    <thead>
+<table class="responsive-table  striped">
+    
         <tr>
-            <th >Queja</th>
-            <th >Fecha</th>
+            <th>Queja</th>
+            <th>Fecha</th>
             <th>Comercio</th>
         </tr>
-    </thead>
+   
 
     @foreach (var queja in ViewBag.ListaQueja)
     {
 
-        <tbody>
+     
 
             <tr>
 
@@ -20,7 +20,7 @@
                 <td>@queja.sucursal.comercio.nombre_comercio</td>
             </tr>
 
-        </tbody>
+        
 
 
     }

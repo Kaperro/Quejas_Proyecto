@@ -6,18 +6,16 @@
 
 <h2>@ViewBag.Title</h2>
 
-<table class="table table-dark">
+<table class="responsive-table  striped">
     <tr>
-        <td>
+        <th>
             CONTEO DE QUEJAS
-        </td>
+        </th>
 
-        <td>
+        <th>
             MUNICIPIO
-        </td>
-        <td>
-            ID
-        </td>
+        </th>
+    
     </tr>
 
     @foreach (var item in Model)
@@ -30,10 +28,6 @@
             <td>
                 @item.Comercio
             </td>
-            <td>
-                @item.Id_comercio
-            </td>
-
         </tr>
     }
 

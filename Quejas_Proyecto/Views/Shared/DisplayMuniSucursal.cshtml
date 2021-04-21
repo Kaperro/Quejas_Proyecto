@@ -1,11 +1,16 @@
 ﻿@model Quejas_Proyecto.context.municipio
-<option value="">Seleccione Municipio</option>
+    <option value="">Seleccione Municipio</option>
 
-@if (ViewBag.MuniListSucursal != null)
-{
-    foreach (var item in ViewBag.MuniListSucursal)
+
+
+    @if (ViewBag.MuniListSucursal != null)
     {
-        <option value="@item.Value">@item.Text</option>
+        foreach (var item in ViewBag.MuniListSucursal)
+        {
+           
+                <option value="@item.Value">@item.Text</option>
+           
+        }
     }
-}
+
 
